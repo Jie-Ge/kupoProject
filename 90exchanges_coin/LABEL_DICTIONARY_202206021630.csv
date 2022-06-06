@@ -1,0 +1,237 @@
+"ID","P_ID","LABEL_NAME","LABEL_ICON","LEVEL","SORT","CREATOR","CREATE_TIME","UPDATER","UPDATE_TIME","IN_USE"
+2,1,Huobi,/labelicon/second/Huobi.svg,1,,,,"1234",2021-09-17 14:19:04.000,true
+3,1,Binance,/labelicon/second/Binance.svg,1,,,,"1234",2021-09-18 14:07:48.000,true
+4,1,Dex-trade,/labelicon/second/dex-trade.svg,1,,,,"1234",2021-09-18 14:22:24.000,true
+5,1,Ftx,/labelicon/second/FTXToken(FTT)1.svg,1,,,,"1234",2021-09-18 14:23:07.000,true
+6,1,Kuna,/labelicon/second/Kuna.svg,1,,,,"1234",2021-09-18 14:32:28.000,true
+7,1,Aax,/labelicon/second/Aax.svg,1,,,,"1234",2021-09-18 14:23:44.000,true
+8,1,Lbank,/labelicon/second/Lbank.svg,1,,,,"1234",2021-09-18 14:23:58.000,true
+9,1,Phemex,/labelicon/second/Phemex.svg,1,,,,"1234",2021-09-18 14:24:12.000,true
+10,1,Bitbns,/labelicon/second/Bitbns.svg,1,,,,"1234",2021-09-18 14:24:28.000,true
+11,1,Latoken,/labelicon/second/Latoken.svg,1,,,,"1234",2021-09-18 14:24:40.000,true
+12,1,Kickex,/labelicon/second/Kickex.svg,1,,,,"1234",2021-09-18 14:24:57.000,true
+13,1,Bithumb,/labelicon/second/Bithumb.svg,1,,,,"1234",2021-09-18 14:25:31.000,true
+14,1,Hitbtc,/labelicon/second/Hitbtc.svg,1,,,,"1234",2021-09-18 14:25:43.000,true
+15,1,Upbit,/labelicon/second/Upbit.svg,1,,,,"1234",2021-09-18 14:25:52.000,true
+16,1,Kucoin,/labelicon/second/Kucoin.svg,1,,,,"1234",2021-09-18 14:26:14.000,true
+17,1,Ascendex (bitmax),/labelicon/second/Ascendex.svg,1,,,,"1234",2021-09-18 14:32:47.000,true
+18,1,Cashierest,/labelicon/second/Cashierest.svg,1,,,,"1234",2021-09-18 14:33:10.000,true
+19,1,Bhex,/labelicon/second/Bhex.svg,1,,,,"1234",2021-09-18 14:33:37.000,true
+20,1,Cex.Io,/labelicon/second/Cex.Io.svg,1,,,,"1234",2021-09-18 14:34:14.000,true
+21,1,Dcoin,/labelicon/second/Dcoin.svg,1,,,,"1234",2021-09-18 14:34:29.000,true
+23,1,Coinex,/labelicon/second/Coinex.svg,1,,,,"1234",2021-09-18 14:34:44.000,true
+24,1,Bitmart,/labelicon/second/Bitmart.svg,1,,,,"1234",2021-09-18 14:35:06.000,true
+25,1,Zb,/labelicon/second/Zb.svg,1,,,,"1234",2021-09-18 14:35:18.000,true
+26,1,Bibox,/labelicon/second/Bibox.svg,1,,,,"1234",2021-09-18 14:36:00.000,true
+27,1,Bione,/labelicon/second/Bione.svg,1,,,,"1234",2021-09-22 13:55:35.000,true
+28,1,Okex,/labelicon/second/OKEX.svg,1,,,,"1234",2021-09-18 14:39:33.000,true
+29,1,Poloniex,/labelicon/second/Poloniex.svg,1,,,,"1234",2021-09-18 14:39:53.000,true
+30,1,Gate,/labelicon/second/Gate.svg,1,,,,"1234",2021-09-18 14:40:07.000,true
+31,1,Mxc,/labelicon/second/Mexc.svg,1,,,,"1234",2021-09-18 14:42:22.000,true
+32,1,Bitfinex,/labelicon/second/Bitfinex.svg,1,,,,"1234",2021-09-18 14:42:48.000,true
+33,1,Alameda Research,/labelicon/second/AlamedaResearch.svg,1,,,,"1234",2021-09-18 14:43:58.000,true
+34,1,Indodax,/labelicon/second/Indodax.svg,1,,,,"1234",2021-09-18 14:44:17.000,true
+35,1,Coinbene,/labelicon/second/Coinbene.svg,1,,,,"1234",2021-09-18 14:44:31.000,true
+36,1,Bitrue,/labelicon/second/Bitrue.svg,1,,,,"1234",2021-09-18 14:44:47.000,true
+37,1,Probit,/labelicon/second/Probit.svg,1,,,,"1234",2021-09-18 14:45:22.000,true
+40,1,Bitx,/labelicon/second/Bitx.svg,1,,,,"1234",2021-09-18 14:51:00.000,true
+41,1,Bittrex,/labelicon/second/Bittrex.svg,1,,,,"1234",2021-09-18 14:56:31.000,true
+42,1,Kraken,/labelicon/second/Kraken.svg,1,,,,"1234",2021-09-18 14:56:59.000,true
+43,1,Bitstamp,/labelicon/second/Bitstamp.svg,1,,,,"1234",2021-09-18 14:57:11.000,true
+44,1,Coincheck,/labelicon/second/Coincheck.svg,1,,,,"1234",2021-09-18 14:57:31.000,true
+45,1,Bitmex,/labelicon/second/Bitmex.svg,1,,,,"1234",2021-09-18 14:57:43.000,true
+46,1,Haobtc,/labelicon/second/Haobtc.svg,1,,,,"1234",2021-09-18 14:57:58.000,true
+48,1,Artis Turba,/labelicon/second/ArtisTurba.svg,1,,,,"1234",2021-09-18 14:58:08.000,true
+50,1,Southxchange,/labelicon/second/Southxchange.svg,1,,,,"1234",2021-09-18 14:58:20.000,true
+54,1,Coinone,/labelicon/second/Coinone.svg,1,,,,"1234",2021-09-18 14:58:49.000,true
+55,1,Bigone,/labelicon/second/Bigone.svg,1,,,,"1234",2021-09-18 14:59:04.000,true
+56,1,Korbit,/labelicon/second/Korbit.svg,1,,,,"1234",2021-09-18 14:59:25.000,true
+57,1,Crex,/labelicon/second/Crex.svg,1,,,,"1234",2021-09-18 14:59:38.000,true
+58,1,"50x",/labelicon/second/50x.svg,1,,,,"1234",2021-09-18 14:21:49.000,true
+124,1,Cex.io,,1,,,,,,true
+159,1,Livecoin.net,,1,,,,,,true
+171,1,Mercatox,,1,,,,,,true
+185,1,Bitstorage,,1,,,,,,true
+187,1,Liqui.io,,1,,,,,,true
+189,1,Azbit,,1,,,,,,true
+191,1,Bitun.io,,1,,,,,,true
+195,1,Coinswitch,,1,,,,,,true
+197,1,Bilaxy,,1,,,,,,true
+204,1,Liquid,,1,,,,,,true
+210,1,Minedtrade.com,,1,,,,,,true
+212,1,Biki,,1,,,,,,true
+215,1,C2cx,,1,,,,,,true
+221,1,Tokocrypto,,1,,,,,,true
+224,1,Ftx Exchange,,1,,,,,,true
+226,1,Otcbtc,,1,,,,,,true
+230,1,Yunbi,,1,,,,,,true
+233,1,Cobinhood,,1,,,,,,true
+235,1,Fcoin,,1,,,,,,true
+239,1,Dmex,,1,,,,,,true
+246,1,Cryptopia,,1,,,,,,true
+248,1,Bololex,,1,,,,,,true
+251,1,Artis Turba Exchange,,1,,,,,,true
+253,1,Paribu,,1,,,,,,true
+255,1,Zb.com,,1,,,,,,true
+257,1,Ggbtc,,1,,,,,,true
+260,1,Bitzlato,,1,,,,,,true
+266,1,Flybit,,1,,,,,,true
+269,1,Coinbase,,1,,,,,,true
+271,1,Switchain,,1,,,,,,true
+274,1,Chainx,,1,,,,,,true
+279,1,Binance Jex,,1,,,,,,true
+282,1,Eigen Fx,,1,,,,,,true
+290,1,Indoex,,1,,,,,,true
+299,1,Gemini,,1,,,,,,true
+303,1,Changelly,,1,,,,,,true
+305,1,Hotbit,,1,,,,,,true
+310,1,Bgogo,,1,,,,,,true
+312,1,Nexo,,1,,,,,,true
+318,1,Hoo.com,,1,,,,,,true
+320,1,Cambochanger,,1,,,,,,true
+326,1,Catex Exchange,,1,,,,,,true
+332,1,Tidex,,1,,,,,,true
+334,1,Peatio,,1,,,,,,true
+341,1,Quantaex,,1,,,,,,true
+343,1,Blocktrades Exchange,,1,,,,,,true
+345,1,Whitebit,,1,,,,,,true
+347,1,Arzpaya.com,,1,,,,,,true
+352,1,Abcc,,1,,,,,,true
+355,1,Shapeshift,,1,,,,,,true
+357,1,Coinexchange.io,,1,,,,,,true
+359,1,Bitci,,1,,,,,,true
+365,1,Ataix,,1,,,,,,true
+367,1,Kuna.io,,1,,,,,,true
+382,1,Bity.com,,1,,,,,,true
+384,1,Coinlist,,1,,,,,,true
+391,1,Topbtc,,1,,,,,,true
+393,1,Idax.global,,1,,,,,,true
+399,1,Kryptono,,1,,,,,,true
+401,1,Alcumex Exchange,,1,,,,,,true
+403,1,Bitblinx,,1,,,,,,true
+409,1,Bit2c,,1,,,,,,true
+415,1,Nexbit Pro,,1,,,,,,true
+420,1,Bidesk,,1,,,,,,true
+426,1,Bitmax,,1,,,,,,true
+432,1,Omgfin Exchange,,1,,,,,,true
+435,1,Coss.io,,1,,,,,,true
+437,1,Crypto.com,,1,,,,,,true
+448,1,Beldex,,1,,,,,,true
+451,1,Fixedfloat,,1,,,,,,true
+454,1,Trade.io,,1,,,,,,true
+459,1,Coinw,,1,,,,,,true
+462,1,Bitfront,,1,,,,,,true
+469,1,Gbx,,1,,,,,,true
+472,1,Tether,,1,,,,,,true
+478,1,Bitexlive,,1,,,,,,true
+481,1,Bitbee,,1,,,,,,true
+490,1,Remitano,,1,,,,,,true
+493,1,Crex24,,1,,,,,,true
+495,1,Aprobit,,1,,,,,,true
+498,1,Bitebtc,,1,,,,,,true
+501,1,Flata.exchange,,1,,,,,,true
+503,1,Uex,,1,,,,,,true
+520,1,Coinmetro Exchange,,1,,,,,,true
+526,1,Exchange A,,1,,,,,,true
+532,1,Coindelta,,1,,,,,,true
+537,1,Sparrow Exchange,,1,,,,,,true
+539,1,Btc-alpha Exchange,,1,,,,,,true
+543,1,Bitpie,,1,,,,,,true
+547,1,Tagz,,1,,,,,,true
+560,1,Faa.st,,1,,,,,,true
+580,1,F2pool,,1,,,,,,true
+586,1,Digifinex,,1,,,,,,true
+591,1,Gate.io,,1,,,,,,true
+605,1,Binance Us,,1,,,,,,true
+607,1,Vinex,,1,,,,,,true
+612,1,Bw.com,,1,,,,,,true
+618,1,Panda.exchange,,1,,,,,,true
+630,1,Streamity,,1,,,,,,true
+634,1,Yobit.net,,1,,,,,,true
+638,1,Coinhako,,1,,,,,,true
+643,1,Folgory Exchange,,1,,,,,,true
+650,1,Bit-z,,1,,,,,,true
+666,1,Exmo,,1,,,,,,true
+680,1,Eidoo,,1,,,,,,true
+685,1,Eterbase,,1,,,,,,true
+709,1,Beaxy,,1,,,,,,true
+721,1,Bitso,,1,,,,,,true
+776,1,Coinmotion,,1,,,,,,true
+788,1,Xapo,,1,,,,,,true
+798,1,Bitcurex,,1,,,,,,true
+804,1,Gatecoin,,1,,,,,,true
+812,1,Cavirtex,,1,,,,,,true
+816,1,Indacoin,,1,,,,,,true
+818,1,Coincafe,,1,,,,,,true
+828,1,Coinomat,,1,,,,,,true
+830,1,Bitz,,1,,,,,,true
+832,1,Coinmate,,1,,,,,,true
+834,1,"796",,1,,,,,,true
+836,1,Bitcoinvietnam,,1,,,,,,true
+848,1,Coinarch,,1,,,,,,true
+872,1,Blocktrades,,1,,,,,,true
+880,1,Happycoins,,1,,,,,,true
+884,1,Bx,,1,,,,,,true
+908,1,Altcointrader,,1,,,,,,true
+910,1,Chbtc,,1,,,,,,true
+914,1,Coins-e,,1,,,,,,true
+916,1,Empoex,,1,,,,,,true
+924,1,Mexbt,,1,,,,,,true
+938,1,Btctrade,,1,,,,,,true
+944,1,Usecryptos,,1,,,,,,true
+950,1,Zyado,,1,,,,,,true
+956,1,Localbitcoins,,1,,,,,,true
+958,1,Litebit,,1,,,,,,true
+968,1,Virwox,,1,,,,,,true
+970,1,Maicoin,,1,,,,,,true
+972,1,Therocktrading,,1,,,,,,true
+976,1,Crypopay,,1,,,,,,true
+978,1,Campbx,,1,,,,,,true
+980,1,Btc38,,1,,,,,,true
+984,1,Cryptsy,,1,,,,,,true
+998,1,Ccedk,,1,,,,,,true
+1002,1,Coinbroker,,1,,,,,,true
+1004,1,Exchanging,,1,,,,,,true
+1014,1,Orderbook,,1,,,,,,true
+1030,1,Bitcoin,,1,,,,,,true
+1036,1,Bitflyer,,1,,,,,,true
+1038,1,Bitbargain,,1,,,,,,true
+1042,1,Cryptonit,,1,,,,,,true
+1050,1,Lakebtc,,1,,,,,,true
+1066,1,Clevercoin,,1,,,,,,true
+1077,1,C-cex,,1,,,,,,true
+1087,1,Banx,,1,,,,,,true
+1091,1,Okcoin,,1,,,,,,true
+1107,1,Simplecoin,,1,,,,,,true
+1109,1,Fybsg,,1,,,,,,true
+1119,1,Uniccshop.mn,,1,,,,,,true
+1135,1,Coingi,,1,,,,,,true
+1141,1,Spectrocoin,,1,,,,,,true
+1143,1,Quadrigacx,,1,,,,,,true
+1159,1,Hb.top,,1,,,,,,true
+1169,1,Yobit,,1,,,,,,true
+1175,1,Coinspot,,1,,,,,,true
+1177,1,Vaultoro,,1,,,,,,true
+1181,1,Igot,,1,,,,,,true
+1185,1,Btc-e,,1,,,,,,true
+1187,1,Bter,,1,,,,,,true
+1195,1,Bitkonan,,1,,,,,,true
+1199,1,Foxbit,,1,,,,,,true
+1215,1,Coinchimp,,1,,,,,,true
+1219,1,Bitvc,,1,,,,,,true
+1225,1,Deribit,,1,,,,,,true
+1233,1,Bit-x,,1,,,,,,true
+1237,1,Hashnest,,1,,,,,,true
+1239,1,Matbea,,1,,,,,,true
+1249,1,Bitbay,,1,,,,,,true
+1257,1,Btcmarkets,,1,,,,,,true
+1267,1,Uphold,,1,,,,,,true
+1269,1,Vircurex,,1,,,,,,true
+1287,1,Bleutrade,,1,,,,,,true
+1291,1,Btcc,,1,,,,,,true
+1319,1,Cointiger,,1,,,,,,true
+1335,1,Paxful,,1,,,,,,true
+1339,1,Btradeaustralia,,1,,,,,,true
+1351,1,Mexc.com,,1,,,,,,true
+1353,1,Bitkeep,,1,,,,,,true
+1357,1,Bitdiamond,,1,,,,,,true

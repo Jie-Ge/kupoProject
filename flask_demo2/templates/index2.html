@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <article class="post post-1" repeat="blogData.data">
+    <header class="entry-header">
+        <h1 class="entry-title">
+            <a href="javascript:;" data-id="{{item.key}}" onclick="showArticle(this)" >{{item.title}}</a>
+        </h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="#">{{item.category}}</a></span>
+            <span class="post-date"><a href="#">
+                <time class="entry-date">{{item.updateAt}}</time>
+            </a></span>
+            <span class="post-author"><a href="#">{{item.author}}</a></span>
+            <span class="comments-link"><a href="#">{{item.segs}} 评论</a></span>
+            <span class="views-count"><a href="#">{{item.count}} 阅读</a></span>
+        </div>
+    </header>
+    <div class="entry-content clearfix">
+        <p>{{item.content}}</p>
+        <div class="read-more cl-effect-14">
+            <a href="#" class="more-link">继续阅读<span class="meta-nav">→</span></a>
+        </div>
+    </div>
+</article>
+</body>
+</html>

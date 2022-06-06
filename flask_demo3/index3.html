@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取数据</title>
+    <script src="jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <div style="width: 1000px; margin: 100px auto;">
+        <input class="urltext" name="urlname"> <button class="btn">获取数据</button>
+        <br>
+         数据展示<br>
+        <textarea class="datatext" name="text"></textarea>
+    </div>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    //请求结果并局部刷新
+    $('.btn').click(function () {
+        // $('.datatext').val('qweqwewqeqewq');
+        var url = $('.urltext').val();
+        var data= {
+            data: JSON.stringify({
+                'url': url,
+            }),
+        }
+        $.ajax({
+            headers: {
+                'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+            },
+            type: 'POST',
+            url: 'http://127.0.0.1:5000/api/',
+            data: data,  // 这个data是要post的数据
+            success: function (data) {  // 这个data是接收到的响应的实体
+                try{
+                    // var data1 = JSON.parse(data)
+                    console.log('success: ', typeof data)
+                    console.log(data)
+                    $('.datatext').val(data);
+                }
+                catch{
+                    $('.datatext').val(data);
+                }
+
+            },
+            error: function (data){
+                $('.datatext').val('获取数据失败')
+            }
+        });
+    });
+})
+
+</script>
+</body>
+</html>
