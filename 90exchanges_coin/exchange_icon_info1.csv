@@ -49,7 +49,7 @@
 47,57,1,Crex,/labelicon/second/Crex.svg,1,,,,1234.0,2021-09-18 14:59:38.000,True
 48,58,1,50x,/labelicon/second/50x.png,1,,,,1234.0,2021-09-18 14:21:49.000,True
 49,124,1,Cex.io,/labelicon/second/Cex.io.png,1,,,,,,True
-50,159,1,Livecoin.net,,1,,,,,,True
+50,159,1,Livecoin.net,/labelicon/second/Livecoin.net.png,1,,,,,,True
 51,171,1,Mercatox,/labelicon/second/Mercatox.png,1,,,,,,True
 52,185,1,Bitstorage,/labelicon/second/Bitstorage.png,1,,,,,,True
 53,187,1,Liqui.io,,1,,,,,,True
@@ -62,7 +62,7 @@
 60,212,1,Biki,/labelicon/second/Biki.png,1,,,,,,True
 61,215,1,C2cx,/labelicon/second/C2cx.png,1,,,,,,True
 62,221,1,Tokocrypto,/labelicon/second/Tokocrypto.png,1,,,,,,True
-63,224,1,Ftx Exchange,,1,,,,,,True
+63,224,1,Ftx Exchange,/labelicon/second/Ftx.png,1,,,,,,True
 64,226,1,Otcbtc,/labelicon/second/Otcbtc.png,1,,,,,,True
 65,230,1,Yunbi,,1,,,,,,True
 66,233,1,Cobinhood,/labelicon/second/Cobinhood.png,1,,,,,,True
@@ -70,38 +70,38 @@
 68,239,1,Dmex,,1,,,,,,True
 69,246,1,Cryptopia,/labelicon/second/Cryptopia.png,1,,,,,,True
 70,248,1,Bololex,/labelicon/second/Bololex.png,1,,,,,,True
-71,251,1,Artis Turba Exchange,,1,,,,,,True
+71,251,1,Artis Turba Exchange,/labelicon/second/Artis_Turba.png,1,,,,,,True
 72,253,1,Paribu,/labelicon/second/Paribu.png,1,,,,,,True
 73,255,1,Zb.com,/labelicon/second/Zb.com.png,1,,,,,,True
 74,257,1,Ggbtc,,1,,,,,,True
 75,260,1,Bitzlato,,1,,,,,,True
 76,266,1,Flybit,/labelicon/second/Flybit.png,1,,,,,,True
-77,269,1,Coinbase,,1,,,,,,True
+77,269,1,Coinbase,/labelicon/second/Coinbase.png,1,,,,,,True
 78,271,1,Switchain,,1,,,,,,True
 79,274,1,Chainx,/labelicon/second/Chainx.png,1,,,,,,True
-80,279,1,Binance Jex,,1,,,,,,True
+80,279,1,Binance Jex,/labelicon/second/Binance_Jex.png,1,,,,,,True
 81,282,1,Eigen Fx,,1,,,,,,True
 82,290,1,Indoex,/labelicon/second/Indoex.png,1,,,,,,True
 83,299,1,Gemini,/labelicon/second/Gemini.png,1,,,,,,True
-84,303,1,Changelly,,1,,,,,,True
+84,303,1,Changelly,/labelicon/second/Changelly_PRO.png,1,,,,,,True
 85,305,1,Hotbit,/labelicon/second/Hotbit.png,1,,,,,,True
 86,310,1,Bgogo,/labelicon/second/Bgogo.png,1,,,,,,True
 87,312,1,Nexo,,1,,,,,,True
-88,318,1,Hoo.com,,1,,,,,,True
+88,318,1,Hoo.com,/labelicon/second/Hoo.png,1,,,,,,True
 89,320,1,Cambochanger,,1,,,,,,True
 90,326,1,Catex Exchange,/labelicon/second/Catex.png,1,,,,,,True
 91,332,1,Tidex,/labelicon/second/Tidex.png,1,,,,,,True
 92,334,1,Peatio,,1,,,,,,True
 93,341,1,Quantaex,/labelicon/second/Quantaex.png,1,,,,,,True
-94,343,1,Blocktrades Exchange,,1,,,,,,True
+94,343,1,Blocktrades Exchange,/labelicon/second/Blocktrade.png,1,,,,,,True
 95,345,1,Whitebit,/labelicon/second/Whitebit.png,1,,,,,,True
-96,347,1,Arzpaya.com,,1,,,,,,True
+96,347,1,Arzpaya.com,/labelicon/second/Arzpaya.com.png,1,,,,,,True
 97,352,1,Abcc,/labelicon/second/Abcc.png,1,,,,,,True
 98,355,1,Shapeshift,,1,,,,,,True
-99,357,1,Coinexchange.io,,1,,,,,,True
+99,357,1,Coinexchange.io,/labelicon/second/Coinexchange.io.png,1,,,,,,True
 100,359,1,Bitci,/labelicon/second/Bitci.png,1,,,,,,True
 101,365,1,Ataix,/labelicon/second/Ataix.png,1,,,,,,True
-102,367,1,Kuna.io,,1,,,,,,True
+102,367,1,Kuna.io,/labelicon/second/Kuna.io.png,1,,,,,,True
 103,382,1,Bity.com,,1,,,,,,True
 104,384,1,Coinlist,/labelicon/second/Coinlist.png,1,,,,,,True
 105,391,1,Topbtc,/labelicon/second/Topbtc.png,1,,,,,,True
@@ -114,7 +114,7 @@
 112,420,1,Bidesk,/labelicon/second/Bidesk.png,1,,,,,,True
 113,426,1,Bitmax,/labelicon/second/Bitmax.png,1,,,,,,True
 114,432,1,Omgfin Exchange,/labelicon/second/Omgfin.png,1,,,,,,True
-115,435,1,Coss.io,,1,,,,,,True
+115,435,1,Coss.io,/labelicon/second/Coss.io.png,1,,,,,,True
 116,437,1,Crypto.com,,1,,,,,,True
 117,448,1,Beldex,/labelicon/second/Beldex.png,1,,,,,,True
 118,451,1,Fixedfloat,,1,,,,,,True
@@ -142,12 +142,12 @@
 140,580,1,F2pool,,1,,,,,,True
 141,586,1,Digifinex,/labelicon/second/Digifinex.png,1,,,,,,True
 142,591,1,Gate.io,/labelicon/second/Gate.io.png,1,,,,,,True
-143,605,1,Binance Us,,1,,,,,,True
+143,605,1,Binance Us,/labelicon/second/Binance_Us.png,1,,,,,,True
 144,607,1,Vinex,,1,,,,,,True
 145,612,1,Bw.com,/labelicon/second/Bw.com.png,1,,,,,,True
 146,618,1,Panda.exchange,,1,,,,,,True
 147,630,1,Streamity,,1,,,,,,True
-148,634,1,Yobit.net,,1,,,,,,True
+148,634,1,Yobit.net,/labelicon/second/Yobit.net.png,1,,,,,,True
 149,638,1,Coinhako,/labelicon/second/Coinhako.png,1,,,,,,True
 150,643,1,Folgory Exchange,/labelicon/second/Folgory.png,1,,,,,,True
 151,650,1,Bit-z,/labelicon/second/Bit-z.png,1,,,,,,True
@@ -169,7 +169,7 @@
 167,834,1,796,,1,,,,,,True
 168,836,1,Bitcoinvietnam,,1,,,,,,True
 169,848,1,Coinarch,,1,,,,,,True
-170,872,1,Blocktrades,,1,,,,,,True
+170,872,1,Blocktrades,/labelicon/second/Blocktrade.png,1,,,,,,True
 171,880,1,Happycoins,,1,,,,,,True
 172,884,1,Bx,,1,,,,,,True
 173,908,1,Altcointrader,/labelicon/second/Altcointrader.png,1,,,,,,True
@@ -206,9 +206,9 @@
 204,1109,1,Fybsg,,1,,,,,,True
 205,1119,1,Uniccshop.mn,,1,,,,,,True
 206,1135,1,Coingi,/labelicon/second/Coingi.png,1,,,,,,True
-207,1141,1,Spectrocoin,,1,,,,,,True
+207,1141,1,Spectrocoin,/labelicon/second/Spectrocoin.png,1,,,,,,True
 208,1143,1,Quadrigacx,/labelicon/second/Quadrigacx.png,1,,,,,,True
-209,1159,1,Hb.top,,1,,,,,,True
+209,1159,1,Hb.top,/labelicon/second/Hb.top.png,1,,,,,,True
 210,1169,1,Yobit,/labelicon/second/Yobit.png,1,,,,,,True
 211,1175,1,Coinspot,/labelicon/second/Coinspot.png,1,,,,,,True
 212,1177,1,Vaultoro,,1,,,,,,True
@@ -224,7 +224,7 @@
 222,1237,1,Hashnest,,1,,,,,,True
 223,1239,1,Matbea,,1,,,,,,True
 224,1249,1,Bitbay,/labelicon/second/Bitbay.png,1,,,,,,True
-225,1257,1,Btcmarkets,,1,,,,,,True
+225,1257,1,Btcmarkets,/labelicon/second/Btcmarkets.png,1,,,,,,True
 226,1267,1,Uphold,,1,,,,,,True
 227,1269,1,Vircurex,,1,,,,,,True
 228,1287,1,Bleutrade,/labelicon/second/Bleutrade.png,1,,,,,,True
@@ -232,6 +232,6 @@
 230,1319,1,Cointiger,/labelicon/second/Cointiger.png,1,,,,,,True
 231,1335,1,Paxful,,1,,,,,,True
 232,1339,1,Btradeaustralia,,1,,,,,,True
-233,1351,1,Mexc.com,,1,,,,,,True
+233,1351,1,Mexc.com,/labelicon/second/Mexc.com.png,1,,,,,,True
 234,1353,1,Bitkeep,,1,,,,,,True
 235,1357,1,Bitdiamond,,1,,,,,,True

@@ -1,10 +1,6 @@
 
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-'''
-爬取：https://www.mifengcha.com/ 的币种简介
-
-'''
 
 import threading
 import time
@@ -132,10 +128,12 @@ def request_page(url, proxy_ip=None):
                 r.sadd('fail_contract', url.split('/')[-1])
         break
 
+
 def en_decode(str01):
     return str(str01).replace('\'', '').replace('\001', '').replace('\002', '') \
         .replace(r'\0xa0', '').replace('\n', ' ').replace('\r', ' ') \
         .encode("utf-8", 'ignore').decode("utf-8", "ignore")
+
 
 def parse_data(response):
     Contract = ''
@@ -218,6 +216,7 @@ def parse_data(response):
     data_list.append(token_html)
 
     save_detail(data_list)
+
 
 def save_detail(data_list):
     threadLock.acquire()
