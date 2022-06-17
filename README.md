@@ -1,4 +1,8 @@
 
+
+### 4icon_2
+- 创建文件
+
 ### 9bscscan.com
 - 网站：https://bscscan.com/token/0x3ee2200efb3400fabb9aacf31297cbdd1d435d47
 - 技术：重新启动程序，爬虫接着运行（而不是从头开始）、代理的使用、大量请求、csv、进程与线程配合
