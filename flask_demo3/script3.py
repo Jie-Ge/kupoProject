@@ -38,6 +38,7 @@ def request_page(data_dic):
     title = page.xpath('//title/text()')[0]
     return title
 
+
 ## 还得增加日志功能（flask自带日志功能），异常检测
 
 if __name__ == '__main__':

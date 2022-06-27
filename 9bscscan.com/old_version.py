@@ -256,11 +256,11 @@ def main():
     total_url_count = page_queue.qsize()
 
     if not os.path.exists('get_contract_info1.csv'):
-        f1 = open('get_contract_info1.csv', 'a', encoding='utf=8', newline='')
+        f1 = open('get_contract_info1.csv', 'a', encoding='utf-8', newline='')
         info_f = csv.writer(f1)
         info_f.writerow(['Contract', 'Title', 'Tag', 'Icon_href', 'Decimals', 'Official_Site', 'Social_Profiles', 'token_html'])
     else:
-        f1 = open('get_contract_info1.csv', 'a', encoding='utf=8', newline='')
+        f1 = open('get_contract_info1.csv', 'a', encoding='utf-8', newline='')
         info_f = csv.writer(f1)
 
     threads2 = []

@@ -1,102 +1,121 @@
+import os
+import time
+import torch
+import torch.nn as nn
+import multiprocessing as mp
 
-url = 'C:\Users\Administrator\Desktop\情报数据《金沙彩票》\support-sys-历史对话_347754_2022-03-20_2022-04-01_1654676851\support-sys-历史对话347754_2022-03-20_2022-04-01_1654676926_9000.xlsx'
-aa = ['https://legacy-pics.meiqiausercontent.com/images/347754/Ytpu/olsFKapvUgDqa4KwNZ3a.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/L6Jd/3LLxIjPTDkKbhYjrFMuu.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/tHr4/IPWKfrU0zv6DbIvdkfSn.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Pr29/MrL5BWjK1Jn5Z1D7GGq8.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/dS24/8o0KSrUffkHBWbIBxbXY.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/s25u/NucnrV5rcOVc7oSW1mDv.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/2VYL/VRQ6FN2OBSBI94OFYD2L.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/SOUl/P41NWyQrjYShlryFyqDK.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ZIx0/nmMXNhXSoWtbWgX56n6z.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/R6jt/3ROENXGHGUgLN962l06j.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Om1n/qWwKmZcn1cXfU2Huo5Wa.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/PUky/erxmwyE38V2Bu4naeq3e.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/dbxO/ptJvPDOj9OzDfEYu2xQT.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/C6TT/DevR5rFhsR5qwm5ymka4.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/3ema/v9yvoyj3ZccoAoH0qCpx.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/hhAu/pDaxFYOMicrM9oEig0ex.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/coT2/o1qmvgW6HS1RGVTEmVdv.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/rTD3/gXbVYo71VgeFFJFa72S1.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/n0Qq/nMX5rPKEXRMZZfXjr5GZ.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/QPKP/h3yKZHN1J2KXOEssyfIZ.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/MSBg/kFeMTfkZpm31kbWdnmAU.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/CHAq/ShVlSAgrvvfApW3f3W24.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/rVAO/ecH2pgMH5Cy6ZHY7oG2F.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/cJKo/E61fxvXDILuDvaUYvlSp.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/1Yiw/yQFSDGpLyTdNGWGhegaA.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/egu1/7BmcTHuerbJoNOnCVImn.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ENWh/QwuxowAwPxe2gSRdmhnl.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/UGSu/Y0Vlr2AEy7XtPkW0Uuvq.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/o5D3/eZcKjrdEAV4XkV5u1GE0.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/xBRX/c10rjJQ7CnA1zOlCMfjU.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/S3nb/gNePsl0GoLo5KwJNv6Ii.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/gdHx/0UwsYLK7YxYJQAA98qwo.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/pWdT/wweZalZQZ02Sw4qcdyzK.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/yk2Q/UjfXij62EaqbwObEAQmO.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ukTA/zETRN8uzOXMUHSQg5nqi.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/VZi1/JCaEzDEP7N8UxwEhImWB.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/2dlO/YYLWpjGk8m7rqE4Kr9zr.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/irvG/Gv16aCCYJoM0MhVGegah.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/U7C8/ZGQx00pXQEuDFCw2nsSe.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/rsaz/LJoZvQCtOacKbLo8yR1N.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/1DEy/yJea9287cJHqXLN0gVts.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Dfkj/YARUDstuR45xnLozb67X.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/EAZE/YxD5nrY0Slt3sQ7utk50.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/mOJj/mnDYjXmRD1bTw3GBcHtD.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Gil9/spNxqrvzrOVHfZhkEEzE.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/h5j5/ZOG11rwExsjEoODT4dub.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/MHEU/D5YnjyzGTTKT7u6iNzKT.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/hoe9/QTEvmKYCB5YRpOp9Og8z.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/03Sx/KPxqkYo1L9YZ3faWUdiQ.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/qajw/vknJ7CUVTMSsM1k5VWKV.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/n3TV/7ySTiK2Wz4SPUhaswewO.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/8ZAo/iu5JlZ3olrtdnBus7mRf.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/eZVT/vwikTzdbMExMVsrxXgbc.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/YfOS/18FKaZmv24bnQ8uWbHbT.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/swXe/VpExcqXcA47g7jmLvuWN.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/g4UJ/tiZ5meJFyhxQuoM6YDmM.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ohe3/6gnfF0UHIASC4w1X6krk.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ID6V/KOK7tEK4353PVPKAWlK7.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/kSmH/CAk0P4dyuG5ye60sKX1l.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/zp5j/oXJVONJgVG9zOXhyfPTC.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/5AGQ/ylYL4bEFS3H9ODZ7o1mU.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Soij/8EIxpH3JEne7kNxdMgvZ.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/QL7f/dUMjTW9GTE1HxT9scEpA.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/LYoj/iSvkzzgN8YWnD9KprPLe.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/r9lO/S7EnHaS7K8a4du7Usntz.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/NdXr/a1AYLhcihAqRfJcZhB8b.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/pyVI/qLQntm7QxCWuf6Jsrfbq.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/NHHJ/8bOwMT8NpNULHIm7Io1g.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/AfbF/2hTgH6tFas7GhcVDZKJE.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/2Ujp/zBMMbkYS8gAVuuGdKEwx.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/8WGD/neT4QkgRgnBMuzNsHx7E.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/TOYH/fXeGxSfDJ0eirjvTtiva.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/io0F/O350WV6BZmvcc6rYQMFt.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/0eM6/jnQMid6dwivEHQ4BY3Yn.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/5otf/1TPntJui5McAF7GxQuNN.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/7HkF/YIXWCmdkVK1fGoN6R14t.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/6KZ6/DnMJ1dggeDiJUAEzvyMt.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/boq0/2pg4gTU0Xsxe4QcwoKQF.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/cXNb/KxlJPvdor4mIeRRHXqT5.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Odrj/cGce1wgpb5qkKCnB4MaR.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/Rw0c/ZsMtoBAfOAm1FuDhwBbJ.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/cLtV/9f5xbfRJ6eD8903sH0od.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/vS4x/Ujj3TRdzQmW4EnMs6AV0.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/b7Wp/njVKR3Pjwxbt7GfG0zAM.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ACNQ/h22Ft4AQ5xIWwKF0xgRh.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/KPqJ/2rZ1LRNQtLaJZgY1XeO7.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/4Pf2/fcUDAJJMXlGqaILqqq1h.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/mxA7/xQUjTRgp0ZpzhpCNdbFt.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/c72y/kdN8qbpujDUaDU7rZayo.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/HSOW/bfBfavSqzLSie3O6221w.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/0hhG/1R9Icugf2xsTuwYMujKy.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/WbsX/lkz2ufC6KV4TLhVyTfqM.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/ptOP/28QSGMRkXU33oTofB1Ze.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/j7Lx/30DnRPC4uk5OdVK1StN7.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/HRDX/uEG6E6YXXRGFZMMQ9bOT.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/qrt1/DYaaUic8sJP6IapNH1ey.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/hsg1/wwseHVoDchTwh8HzK8RF.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/3pmX/Fzn0uYUNg7U3ZoWz9pt8.jpg',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/AOKF/uCsQguObzaLKnsnBqQFe.png',
-      'https://legacy-pics.meiqiausercontent.com/images/347754/fiML/ferZbqsfRPsvdCwrO6QG.jpg']
+
+# 控制模型选择的函数
+def train(is_end, gpu_id, model_name):
+    if model_name == 'TransE':
+        transe_run(gpu_id, model_name)
+        transe_run(gpu_id, model_name)
+        with is_end.get_lock():
+            is_end.value += 1
+    elif model_name == 'TransH':
+        transh_run(gpu_id, model_name)
+        transh_run(gpu_id, model_name)
+        transh_run(gpu_id, model_name)
+        with is_end.get_lock():
+            is_end.value += 1
+    else:
+        sacn_run(gpu_id, model_name)
+        sacn_run(gpu_id, model_name)
+        sacn_run(gpu_id, model_name)
+        sacn_run(gpu_id, model_name)
+        with is_end.get_lock():
+            is_end.value += 1
+
+
+# 父进程中的主函数
+def main(os_context):
+    # 设置一个共享变量，用来记录完成训练的子进程个数
+    is_end = os_context.Value("i", 0)
+    # 创建多个子进程
+    transe_trainer = os_context.Process(target=train, args=(is_end, 0, 'TransE'))
+    transh_trainer = os_context.Process(target=train, args=(is_end, 1, 'TransH'))
+    sacn_trainer = os_context.Process(target=train, args=(is_end, 2, 'SACN'))
+    # 启动子进程
+    transe_trainer.start()
+    transh_trainer.start()
+    sacn_trainer.start()
+    # 下面的代码使得共享变量能够同步更新
+    transe_trainer.join()
+    transh_trainer.join()
+    sacn_trainer.join()
+    # 输出完成训练的子进程个数
+    print('finish count: %d' % is_end.value)
+
+
+# 程序入口
+if __name__ == '__main__':
+    # 输出CPU个数和GPU个数
+    print('The machine has %d CPUs.' % os.cpu_count())
+    print('The machine has %d GPUs.' % torch.cuda.device_count())
+    # 获取操作系统上下文
+    context = mp.get_context('spawn')
+    # 运行主函数
+    main(context)
+
+
+# 模拟TransE训练
+def transe_run(gpu_id, model_name):
+    # 设置模型训练所在GPU
+    torch.cuda.set_device(gpu_id)
+    torch.cuda.is_available()
+    print('b train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
+    # 模型的初始化
+    entity_embedding = nn.Parameter(torch.zeros(2000, 50))
+    nn.init.uniform_(tensor=entity_embedding, a=-20, b=20)
+    relation_embedding = nn.Parameter(torch.zeros(16, 50))
+    nn.init.uniform_(tensor=relation_embedding, a=-20, b=20)
+    entity_embedding.cuda(gpu_id)
+    relation_embedding.cuda(gpu_id)
+    # 模拟模型的训练
+    for i in range(100):
+        entity_embedding = entity_embedding + torch.tensor([0.1])
+        relation_embedding = relation_embedding + torch.tensor([-0.1])
+        time.sleep(1.5)
+    print('a train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
+
+
+# 模拟TransH训练
+def transh_run(gpu_id, model_name):
+    # 设置模型训练所在GPU
+    torch.cuda.set_device(gpu_id)
+    torch.cuda.is_available()
+    print('b train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
+    # 模型的初始化
+    entity_embedding = nn.Parameter(torch.zeros(2000, 100))
+    nn.init.uniform_(tensor=entity_embedding, a=-20, b=20)
+    relation_embedding = nn.Parameter(torch.zeros(16, 100))
+    nn.init.uniform_(tensor=relation_embedding, a=-20, b=20)
+    entity_embedding.cuda(gpu_id)
+    relation_embedding.cuda(gpu_id)
+    # 模拟模型的训练
+    for i in range(100):
+        entity_embedding = entity_embedding + torch.tensor([0.1])
+        relation_embedding = relation_embedding + torch.tensor([-0.1])
+        time.sleep(1.5)
+    print('a train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
+
+
+# 模拟SACN训练
+def sacn_run(gpu_id, model_name):
+    # 设置模型训练所在GPU
+    torch.cuda.set_device(gpu_id)
+    torch.cuda.is_available()
+    print('b train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
+    # 模型的初始化
+    entity_embedding = nn.Parameter(torch.zeros(2000, 150))
+    nn.init.uniform_(tensor=entity_embedding, a=-20, b=20)
+    relation_embedding = nn.Parameter(torch.zeros(16, 150))
+    nn.init.uniform_(tensor=relation_embedding, a=-20, b=20)
+    entity_embedding.cuda(gpu_id)
+    relation_embedding.cuda(gpu_id)
+    # 模拟模型的训练
+    for i in range(100):
+        entity_embedding = entity_embedding + torch.tensor([0.1])
+        relation_embedding = relation_embedding + torch.tensor([-0.1])
+        time.sleep(1.5)
+    print('a train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
