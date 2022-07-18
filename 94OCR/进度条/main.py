@@ -1,3 +1,4 @@
+import json
 import time
 from multiprocessing import Pool
 from tqdm import tqdm
@@ -9,7 +10,7 @@ def do_work(x):
     time.sleep(1)
     return x
 
-total = 10  # 总任务数
+total = 5  # 总任务数
 tasks = range(total)
 pbar = tqdm(total=len(tasks))
 
@@ -31,6 +32,7 @@ def run():
     response.headers.add('Access-Control-Allow-Headers', '*')
     response.headers.add('Access-Control-Allow-Methods', '*')
     return response
+
 
 @app.route('/progress/')
 def progress():

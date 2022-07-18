@@ -1,8 +1,8 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-
 import pandas as pd
 import easyocr
+from loguru import logger
 
 
 def digit_length(string: str):
@@ -30,8 +30,9 @@ def extract_payee_info(content):
     try:
         content_list = content.split('_')
     except Exception as e:
-        print('payee content_list is error: ', e)
-        print(content)
+        logger.remove()
+        logger.add('main_error_log.out', level='ERROR')
+        logger.error(f"func extract_payee_info() error-------Exception: {e}，content: {content}\n")
         return '', '', ''
 
     # 提取收款人
@@ -71,6 +72,7 @@ def extract_payee_info(content):
                     payment_account = temp1
                 elif ('米米' in temp2 or '**' in temp2) and digit_length(temp2) >= 4:
                     payment_account = temp2
+    payment_account = payment_account.replace(' ', '')
 
     # 提取收款银行
     payment_bank = ''
@@ -105,8 +107,9 @@ def extract_payer_info(content):
     try:
         content_list = content.split('_')
     except Exception as e:
-        print('payer content_list is error: ', e)
-        print(content)
+        logger.remove()
+        logger.add('main_error_log.out', level='ERROR')
+        logger.error(f"func extract_payer_info() error-------Exception: {e}，content: {content}\n")
         return '', '', ''
 
     # 提取付款人
@@ -138,6 +141,7 @@ def extract_payer_info(content):
                     payer_account = temp1
                 elif ('米米' in temp2 or '**' in temp2) and digit_length(temp2) >= 4:
                     payer_account = temp2
+    payer_account = payer_account.replace(' ', '')
 
     # 提取付款银行
     payer_bank = ''
@@ -162,8 +166,9 @@ def extract_trade_time(content):
     try:
         content_list = content.split('_')
     except Exception as e:
-        print('extract_trade_time is error: ', e)
-        print(content)
+        logger.remove()
+        logger.add('main_error_log.out', level='ERROR')
+        logger.error(f"func extract_trade_time() error-------Exception: {e}，content: {content}\n")
         return ''
 
     trade_time = ''

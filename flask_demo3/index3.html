@@ -29,9 +29,9 @@ $(document).ready(function(){
         }
         $.ajax({
             headers: {
-                'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                'Access-Control-Allow-Origin': "*"  // 跨域问题：前端和后端都要配置允许跨域
             },
-            type: 'POST',
+            type: 'GET',
             url: 'http://127.0.0.1:5000/api/',
             data: data,  // 这个data是要post的数据
             success: function (data) {  // 这个data是接收到的响应的实体

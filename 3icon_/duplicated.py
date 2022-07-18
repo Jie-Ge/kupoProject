@@ -8,7 +8,7 @@ data = df.drop_duplicates(['Contract'], keep='first').reset_index(drop=True)
 print(data)
 
 # 防止将 url 存储为超链接（若为超链接，代开xlsx会报错）
-writer = pd.ExcelWriter(r'./icon2_data/token_detail.xlsx', engine='xlsxwriter', options={'strings_to_urls':False})
+writer = pd.ExcelWriter('xxxx.xlsx', engine='xlsxwriter', engine_kwargs={'options': {'strings_to_urls': False}})
 
 data.to_excel(writer, index=False)
 

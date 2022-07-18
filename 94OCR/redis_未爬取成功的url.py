@@ -43,9 +43,8 @@ def main():
 
 
 if __name__ == '__main__':
-
     threads = []
-    for i in range(20):
+    for i in range(30):
         t = threading.Thread(target=main)
         t.start()
         threads.append(t)

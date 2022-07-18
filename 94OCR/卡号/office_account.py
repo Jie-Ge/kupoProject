@@ -1,14 +1,20 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-from functools import reduce
-
-import pandas as pd
-from pyparsing import col
 import re
 
-df = pd.read_csv('C:/Users/Administrator/Desktop/bbbb.csv')
-print(df)
+import pandas as pd
+from sqlalchemy import create_engine
+import pymysql
+pymysql.install_as_MySQLdb()
 
+engine = create_engine('mysql://root:12345678@192.168.224.49:33060/spider')
+conn = engine.connect()
+
+df1 = pd.read_sql_table('澳门永利娱乐城_chat_info_01', conn)
+print(df1)
+
+df = df1[pd.isna(df1['发送人IP'])]
+print(df)
 
 def account(content):
     cmp = re.compile('([0-9]{16,19})')
@@ -30,4 +36,9 @@ df['消息内容'] = df[['消息内容']].apply(lambda x: replace_info(x.消息�
 
 df = df.drop_duplicates(['卡号'])
 
-df.to_excel('cccccc.xlsx', index=False, encoding='utf-8')
+df = df[pd.notna(df['卡号'])]
+
+# 防止将 url 存储为超链接（若为超链接，打开xlsx会报错）
+writer = pd.ExcelWriter('平台/金沙彩票_银行卡号_平台.xlsx', engine='xlsxwriter',  engine_kwargs={'options': {'strings_to_urls': False}})
+df.to_excel(writer, index=False)
+writer.close()

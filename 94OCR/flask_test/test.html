@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="external nofollow"  rel="stylesheet">
+</head>
+<body>
+<button id="run">执行任务</button>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"
+         >0.00%
+    </div>
+    <p>asdadsa</p>
+</div>
+</body>
+<script  type="text/javascript">
+    // const progress_bar = require('../static/js/progress_bar')
+        function submitFunc() {
+            var upload_info = document.getElementById('upload-info')
+            upload_info.style.display = 'block'
+        }
+    function upload_progress_bar() {
+        function set_progress_rate(n, total) {
+                //设置进度
+                var rate = (n / total * 100).toFixed(2);
+                if (n === total){
+                    $(".upload-progress-bar").text("完成!");
+                    $(".upload-progress-bar").css('display','none');
+
+                }
+                else if (n > 0) {
+                    $(".upload-progress-bar").attr("aria-valuenow", n);
+                    $(".upload-progress-bar").attr("aria-valuemax", total);
+                    $(".upload-progress-bar").text(rate + "%");
+                    $(".upload-progress-bar").css("width", rate + "%");
+                }
+            }
+        console.log('qweqeweqeqw')
+        var interval = setInterval(function () {
+                //每1秒请求一次进度
+                console.log('setInterval111')
+            }, 1000);
+    }
+
+    $("#run").click(function () {
+        setTimeout(function(){upload_progress_bar()}, 3000);
+        //执行任务
+        $.ajax({
+            headers: {
+                        'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                    },
+            url: "http://127.0.0.1:5000/run/",
+            type: "GET",
+            success: function (response) {
+                response = JSON.parse(response);
+                console.log(response);
+            }
+        });
+
+    });
+</script>
+</html>

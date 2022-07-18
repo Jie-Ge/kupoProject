@@ -1,121 +1,68 @@
+import csv
 import os
-import time
-import torch
-import torch.nn as nn
-import multiprocessing as mp
+
+import redis
+import threading
+
+# r = redis.Redis('192.168.224.72', port=6379, db=15, password='123456')
+import requests
+import vthread
 
 
-# 控制模型选择的函数
-def train(is_end, gpu_id, model_name):
-    if model_name == 'TransE':
-        transe_run(gpu_id, model_name)
-        transe_run(gpu_id, model_name)
-        with is_end.get_lock():
-            is_end.value += 1
-    elif model_name == 'TransH':
-        transh_run(gpu_id, model_name)
-        transh_run(gpu_id, model_name)
-        transh_run(gpu_id, model_name)
-        with is_end.get_lock():
-            is_end.value += 1
+f1 = open('ip_address_hunan.csv', 'a', encoding='utf-8-sig', newline='')
+info_f = csv.writer(f1)
+info_f.writerow(['ip', 'address'])
+
+
+def rewrite_request(url):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36"
+    }
+    while True:
+        try:
+            print('url:', url)
+            response = requests.get(url=url, headers=headers, timeout=10)
+            if response.json()['Result']:
+                break
+        except:
+            pass
+    return response
+
+
+@vthread.pool(50)
+def get_ip_address(ip):
+    item = {}
+    if ':' in ip:
+        item['address'] = ''
     else:
-        sacn_run(gpu_id, model_name)
-        sacn_run(gpu_id, model_name)
-        sacn_run(gpu_id, model_name)
-        sacn_run(gpu_id, model_name)
-        with is_end.get_lock():
-            is_end.value += 1
+        url = f"https://sp1.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?query={ip}&resource_id=5809"
+        response = rewrite_request(url=url)
+        json_data = response.json()['data'][0]
+        item['address'] = json_data['location']
+    item['ip'] = ip
+    save(item=item)
 
 
-# 父进程中的主函数
-def main(os_context):
-    # 设置一个共享变量，用来记录完成训练的子进程个数
-    is_end = os_context.Value("i", 0)
-    # 创建多个子进程
-    transe_trainer = os_context.Process(target=train, args=(is_end, 0, 'TransE'))
-    transh_trainer = os_context.Process(target=train, args=(is_end, 1, 'TransH'))
-    sacn_trainer = os_context.Process(target=train, args=(is_end, 2, 'SACN'))
-    # 启动子进程
-    transe_trainer.start()
-    transh_trainer.start()
-    sacn_trainer.start()
-    # 下面的代码使得共享变量能够同步更新
-    transe_trainer.join()
-    transh_trainer.join()
-    sacn_trainer.join()
-    # 输出完成训练的子进程个数
-    print('finish count: %d' % is_end.value)
+def save(item):
+    print([item['ip'], item['address']])
+    if '湖南' in item['address']:
+        info_f.writerow([item['ip'], item['address']])
 
 
-# 程序入口
+def main():
+    with open('./ip_list.txt', 'r') as f:
+        ips = f.read()
+        ip_list = ips.split('\n')
+
+    count = 0
+    tt = len(ip_list)
+    for g_ip in ip_list:
+        count += 1
+        print(f'{count}/{tt}')
+        get_ip_address(g_ip)
+
+    vthread.pool.waitall()
+
+
 if __name__ == '__main__':
-    # 输出CPU个数和GPU个数
-    print('The machine has %d CPUs.' % os.cpu_count())
-    print('The machine has %d GPUs.' % torch.cuda.device_count())
-    # 获取操作系统上下文
-    context = mp.get_context('spawn')
-    # 运行主函数
-    main(context)
-
-
-# 模拟TransE训练
-def transe_run(gpu_id, model_name):
-    # 设置模型训练所在GPU
-    torch.cuda.set_device(gpu_id)
-    torch.cuda.is_available()
-    print('b train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
-    # 模型的初始化
-    entity_embedding = nn.Parameter(torch.zeros(2000, 50))
-    nn.init.uniform_(tensor=entity_embedding, a=-20, b=20)
-    relation_embedding = nn.Parameter(torch.zeros(16, 50))
-    nn.init.uniform_(tensor=relation_embedding, a=-20, b=20)
-    entity_embedding.cuda(gpu_id)
-    relation_embedding.cuda(gpu_id)
-    # 模拟模型的训练
-    for i in range(100):
-        entity_embedding = entity_embedding + torch.tensor([0.1])
-        relation_embedding = relation_embedding + torch.tensor([-0.1])
-        time.sleep(1.5)
-    print('a train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
-
-
-# 模拟TransH训练
-def transh_run(gpu_id, model_name):
-    # 设置模型训练所在GPU
-    torch.cuda.set_device(gpu_id)
-    torch.cuda.is_available()
-    print('b train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
-    # 模型的初始化
-    entity_embedding = nn.Parameter(torch.zeros(2000, 100))
-    nn.init.uniform_(tensor=entity_embedding, a=-20, b=20)
-    relation_embedding = nn.Parameter(torch.zeros(16, 100))
-    nn.init.uniform_(tensor=relation_embedding, a=-20, b=20)
-    entity_embedding.cuda(gpu_id)
-    relation_embedding.cuda(gpu_id)
-    # 模拟模型的训练
-    for i in range(100):
-        entity_embedding = entity_embedding + torch.tensor([0.1])
-        relation_embedding = relation_embedding + torch.tensor([-0.1])
-        time.sleep(1.5)
-    print('a train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
-
-
-# 模拟SACN训练
-def sacn_run(gpu_id, model_name):
-    # 设置模型训练所在GPU
-    torch.cuda.set_device(gpu_id)
-    torch.cuda.is_available()
-    print('b train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
-    # 模型的初始化
-    entity_embedding = nn.Parameter(torch.zeros(2000, 150))
-    nn.init.uniform_(tensor=entity_embedding, a=-20, b=20)
-    relation_embedding = nn.Parameter(torch.zeros(16, 150))
-    nn.init.uniform_(tensor=relation_embedding, a=-20, b=20)
-    entity_embedding.cuda(gpu_id)
-    relation_embedding.cuda(gpu_id)
-    # 模拟模型的训练
-    for i in range(100):
-        entity_embedding = entity_embedding + torch.tensor([0.1])
-        relation_embedding = relation_embedding + torch.tensor([-0.1])
-        time.sleep(1.5)
-    print('a train [%s] on gpu[%d]' % (model_name, torch.cuda.current_device()))
+    main()

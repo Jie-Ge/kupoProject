@@ -46,7 +46,7 @@ def get_bank_addr():
         trade_time = extract_trade_time(content)
 
         sql = f"insert into jinsha_chat_image_info_01_new " \
-              f"values ('{image_url}', '{en_decode(content)}', '{receipt}', '{receipt_account}', '{receipt_bank}', '{payer}', '{payer_account}', '{payer_bank}', '{receipt_account_addr}', '{payer_account_addr}', '{trade_time}')"
+              f"values ('{image_url}', '{en_decode(content)}', '{receipt}', '{receipt_account}', '{receipt_bank}', '{payer}', '{payer_account}', '{payer_bank}', '{trade_time}', '{receipt_account_addr}', '{payer_account_addr}')"
 
         insert_db_recode(sql)
 

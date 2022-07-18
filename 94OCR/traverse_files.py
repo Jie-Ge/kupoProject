@@ -4,7 +4,7 @@ import pandas as pd
 import redis
 
 
-r = redis.Redis('192.168.224.72', port=6379, db=3, password='123456')
+r = redis.Redis('192.168.224.72', port=6379, db=15, password='123456')
 
 count = 0
 def open_file(abs_url):

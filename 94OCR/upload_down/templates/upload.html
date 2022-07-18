@@ -3,13 +3,321 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+<!--    <script src="../static/js/dist.js"></script>-->
 </head>
 <body>
     {# enctype设置不对字符编码 #}
-    <form action="upload" method="POST" enctype="multipart/form-data">
+    <form action="upload" method="POST" enctype="multipart/form-data" style="margin: 10px">
 <!--        <input type="file" name="file" accept=".jpg, .png" />-->
         <input type="file" name="file" accept=".zip"/>
-        <input type="submit" />
+        <input type="submit" onclick="submitFunc()" value="提交/入库"/>
     </form>
+
+    <div id="upload-info" style="margin: 10px; display: none">
+        <p class="upload_database" >正在入库...</p>
+        <p class="upload-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"
+             >0.00%</p>
+
+    </div>
+
+    <div style="margin: 10px;">
+        <button class="ip_btn">解析IP归属地</button>
+        <div id="ip-info" style="margin: 10px; display: none">
+            <p class="ip_errinfo"></p>
+            <p class="ip-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"
+                 >0.00%</p>
+        </div>
+    </div>
+
+    <div style="margin: 10px;">
+        <button class="bank_btn">解析银行卡归属地</button>
+        <div id="card-info" style="margin: 10px; display: none">
+            <p class="bank_errinfo"></p>
+            <p class="card-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"
+                 >0.00%</p>
+        </div>
+    </div>
+
+    <div style="margin: 10px;">
+        <button class="image_btn">解析图片</button>
+        <div id="image-info" style="margin: 10px; display: none">
+            <p class="image_errinfo"></p>
+            <p class="image-progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"
+                 >0.00%</p>
+        </div>
+    </div>
+
+    <div style="margin: 10px">
+        <button class="file_btn">生成数据文件</button>
+        <p class="file_errinfo"></p>
+    </div>
+
+    <div style="margin: 10px">
+        <button class="down_btn">下载文件</button>
+        <p class="down_errinfo"></p>
+    </div>
+
+    <script type="text/javascript">
+        var ip_port = 'http://192.168.224.80:8080/'
+
+        function set_progress_rate(n, total, name) {
+            //设置进度
+            var rate = (n / total * 100).toFixed(2);
+            if (n === total){
+                $(name).text("完成!");
+                $(name).css('display','none');
+            }
+            else if (n > 0) {
+                $(name).text(rate + "%");
+            }
+        }
+
+        function upload_progress_bar(name) {
+            var key_n = 'file_progress_n'
+            var key_total = 'file_progress_total'
+            var data= {
+                data: JSON.stringify({
+                    'key_n': key_n,
+                    'key_total': key_total
+                }),
+            }
+            var interval = setInterval(function () {
+                $.ajax({
+                    url: ip_port + "progress_bar/",
+                    type: "POST",
+                    data: data,
+                    success: function (response) {
+                        response = JSON.parse(response)
+                        console.log(response);
+                        var n = response[key_n];
+                        var total = response[key_total];
+                        if (n < total){
+                            set_progress_rate(n, total, name);
+                        }else if (n === total && n!==null){
+                             set_progress_rate(n, total, name);
+                             clearInterval(interval);
+                        }
+                    }
+                });
+            }, 1000);
+        }
+
+        function submitFunc() {
+            var upload_info = document.getElementById('upload-info')
+            upload_info.style.display = 'block'
+            var cls_name = ".upload-progress-bar"
+            setTimeout(() => {
+                upload_progress_bar(cls_name)
+            }, 3000);
+        }
+
+        $(document).ready(function(){
+            function ip_progress_bar(name) {
+                var key_n = 'ip_progress_n'
+                var key_total = 'ip_progress_total'
+                var data= {
+                    data: JSON.stringify({
+                        'key_n': key_n,
+                        'key_total': key_total
+                    }),
+                }
+                var interval = setInterval(function () {
+                    $.ajax({
+                        url: ip_port + "progress_bar/",
+                        type: "POST",
+                        data: data,
+                        success: function (response) {
+                            response = JSON.parse(response)
+                            console.log(response);
+                            var n = response[key_n];
+                            var total = response[key_total];
+                            if (n < total){
+                                set_progress_rate(n, total, name);
+                            }else if (n === total && n!==null){
+                                 set_progress_rate(n, total, name);
+                                 clearInterval(interval);
+                            }
+                        }
+                    });
+                }, 1000);
+            }
+
+            $('.ip_btn').click(function () {
+                var class_name = '.ip-progress-bar'
+                setTimeout(function(){ip_progress_bar(class_name)}, 3000);
+                var ip_info = document.getElementById('ip-info')
+                ip_info.style.display = 'block'
+                $('.ip_errinfo').text('正在解析ip归属地...');
+                $.ajax({
+                    headers: {
+                        'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                    },
+                    type: 'GET',
+                    url: ip_port + 'ipaddress/',
+                    success: function (data) {  // 这个data是接收到的响应的实体
+                        console.log(data)
+                        $('.ip_errinfo').text(data)
+
+                    }
+                });
+            });
+
+             function image_progress_bar(name) {
+                var key_n = 'image_progress_n'
+                var key_total = 'image_progress_total'
+                var data= {
+                    data: JSON.stringify({
+                        'key_n': key_n,
+                        'key_total': key_total
+                    }),
+                }
+                var interval = setInterval(function () {
+                    $.ajax({
+                        url: ip_port + "progress_bar/",
+                        type: "POST",
+                        data: data,
+                        success: function (response) {
+                            response = JSON.parse(response)
+                            console.log(response);
+                            var n = response[key_n];
+                            var total = response[key_total];
+                            if (n < total){
+                                set_progress_rate(n, total, name);
+                            }else if (n === total && n!==null){
+                                 set_progress_rate(n, total, name);
+                                 clearInterval(interval);
+                            }
+                        }
+                    });
+                }, 1000);
+            }
+
+            $('.image_btn').click(function () {
+                var class_name = '.image-progress-bar'
+                setTimeout(function(){image_progress_bar(class_name)}, 3000);
+                var image_info = document.getElementById('image-info')
+                image_info.style.display = 'block'
+                $('.image_errinfo').text('正在解析图片信息...');
+                $.ajax({
+                    headers: {
+                        'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                    },
+                    type: 'GET',
+                    url: ip_port + 'parseimage/',
+                    success: function (data) {  // 这个data是接收到的响应的实体
+                        console.log(data)
+                        $('.image_errinfo').text(data)
+
+                    }
+                });
+            });
+
+             function card_progress_bar(name) {
+                var key_n = 'card_progress_n'
+                var key_total = 'card_progress_total'
+                var data= {
+                    data: JSON.stringify({
+                        'key_n': key_n,
+                        'key_total': key_total
+                    }),
+                }
+                var interval = setInterval(function () {
+                    $.ajax({
+                        url: ip_port + "progress_bar/",
+                        type: "POST",
+                        data: data,
+                        success: function (response) {
+                            response = JSON.parse(response)
+                            console.log(response);
+                            var n = response[key_n];
+                            var total = response[key_total];
+                            if (n < total){
+                                set_progress_rate(n, total, name);
+                            }else if (n === total && n!==null){
+                                 set_progress_rate(n, total, name);
+                                 clearInterval(interval);
+                            }
+                        }
+                    });
+                }, 1000);
+            }
+
+
+            $('.bank_btn').click(function () {
+                var class_name = '.card-progress-bar'
+                setTimeout(function(){card_progress_bar(class_name)}, 3000);
+                var card_info = document.getElementById('card-info')
+                card_info.style.display = 'block'
+                $('.bank_errinfo').text('正在解析银行卡归属地...');
+                $.ajax({
+                    headers: {
+                        'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                    },
+                    type: 'GET',
+                    url: ip_port + 'bankaddress/',
+                    success: function (data) {  // 这个data是接收到的响应的实体
+                        console.log(data)
+                        $('.bank_errinfo').text(data)
+
+                    }
+                });
+            });
+
+            var file_name = 'default_name'
+            $('.file_btn').click(function () {
+                $('.file_errinfo').text('正在生成数据文件...');
+                $.ajax({
+                    headers: {
+                        'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                    },
+                    type: 'GET',
+                    url: ip_port + 'datafile/',
+                    success: function (data) {  // 这个data是接收到的响应的实体
+                        data = JSON.parse(data)
+                        file_name = data["filename"];
+                        $('.file_errinfo').text(data["msg"])
+
+                    }
+                });
+            });
+
+            $('.down_btn').click(function () {
+                $.ajax({
+                    headers: {
+                        'Access-Control-Allow-Origin': "*"  // 跨域问题：后端和服务器都要配置允许跨域
+                    },
+                    xhrFields: {
+                        responseType:'blob'  // 必须，否则下载的文件打开会报错
+                    },
+                    type: 'GET',
+                    url: ip_port + 'download/',
+                    success: function (data) {  // 这个data是接收到的响应的实体
+                        const link = document.createElement('a')
+                        link.style.display = "none";
+                        let blob = new Blob([data], {type:"text/xml"})
+                        console.log(blob)
+                        if (blob['size'] === 13){
+                            $('.down_errinfo').text('error: 下载的文件不存在')
+                            return
+                        }
+                        let objectUrl = URL.createObjectURL(blob)
+                        link.download = file_name + '_data.zip'
+                        link.href = objectUrl
+                        document.body.appendChild(link);
+                        link.click()
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(objectUrl)  //释放内存
+
+                    },
+                    error: function (data){
+                        $('.down_errinfo').text('下载文件失败')
+                    }
+                });
+            });
+
+        })
+
+    </script>
 </body>
 </html>

@@ -9,11 +9,11 @@
 </head>
 <body>
 <button id="run">执行任务</button>
-<br><br>
 <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"
          >0.00%
     </div>
+    <p>asdadsa</p>
 </div>
 </body>
 <script>
@@ -22,6 +22,7 @@
         var rate = (n / total * 100).toFixed(2);
         if (n === total){
             $(".progress-bar").text("完成!");
+            $(".progress-bar").css('display','none');
         }
         else if (n > 0) {
             $(".progress-bar").attr("aria-valuenow", n);
@@ -36,8 +37,8 @@
             url: "http://127.0.0.1:5000/run/",
             type: "GET",
             success: function (response) {
-                aaa();
-                console.log('执行完成，结果为：' + response['results']);
+                response = JSON.parse(response)
+                console.log('执行完成，结果为：' + response);
             }
         });
 
