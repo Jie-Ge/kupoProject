@@ -31,7 +31,7 @@ def extract_payee_info(content):
         content_list = content.split('_')
     except Exception as e:
         logger.remove()
-        logger.add('main_error_log.out', level='ERROR')
+        logger.add('main_error_out.log', level='ERROR')
         logger.error(f"func extract_payee_info() error-------Exception: {e}，content: {content}\n")
         return '', '', ''
 
@@ -108,7 +108,7 @@ def extract_payer_info(content):
         content_list = content.split('_')
     except Exception as e:
         logger.remove()
-        logger.add('main_error_log.out', level='ERROR')
+        logger.add('main_error_out.log', level='ERROR')
         logger.error(f"func extract_payer_info() error-------Exception: {e}，content: {content}\n")
         return '', '', ''
 
@@ -167,7 +167,7 @@ def extract_trade_time(content):
         content_list = content.split('_')
     except Exception as e:
         logger.remove()
-        logger.add('main_error_log.out', level='ERROR')
+        logger.add('main_error_out.log', level='ERROR')
         logger.error(f"func extract_trade_time() error-------Exception: {e}，content: {content}\n")
         return ''
 

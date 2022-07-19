@@ -1,24 +1,9 @@
+#### 此项目使用步骤
 
-- flask项目使用，必须创建名字对应的文件，否则无法找到，
-  - static文件
-      存放要使用的js和css文件，单独创建一个 css 或者 js 文件夹，
-      
-  - templates文件夹
-  
-      存放要加载的html文件
-  
-  - 如下：
-  
-    ```python
-    static
-    	css
-        	css1.css
-            css2.css
-    	js
-        	jquery-3.6.0.min.js
-    templates
-    	index.html
-    main.py
-    ```
-  
-    
+- 启动 flask_app.py
+- 访问 http://ip:8080/upload
+  - 若想远程访问当前计算机，需要修改 `./templates/upload.html` 文件中的 `ip_port` 变量为当前计算机的IP
+  - 若只是本机访问，则将IP设成 `127.0.0.1`
+- 每次打开上一步的页面，需要先选择文件并提交，才能点击执行后续功能
+
+- 若想使用GPU识别图片，需要先安装 CUDA 驱动

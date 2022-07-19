@@ -41,7 +41,7 @@ def insert_db_recode(sql):
         conn.commit()
     except Exception as e:
         logger.remove()
-        logger.add('mysql_error_log.out', level='ERROR')
+        logger.add('mysql_error_out.log', level='ERROR')
         logger.error(f"insert into mysql fail-----Exception: {e}, sql: {sql}\n")
     finally:
         conn.close()
@@ -55,7 +55,7 @@ def select_db_recode(sql):
         return cursor.fetchall()
     except Exception as e:
         logger.remove()
-        logger.add('mysql_error_log.out', level='ERROR')
+        logger.add('mysql_error_out.log', level='ERROR')
         logger.error(f"select mysql fail-----Exception: {e}, sql: {sql}\n")
     finally:
         conn.close()
@@ -68,7 +68,7 @@ def up_data_recode(sql):
         cursor.execute(sql)
         conn.commit()
     except Exception as e:
-        logger.add('mysql_error_log.out', level='ERROR')
+        logger.add('mysql_error_out.log', level='ERROR')
         logger.error(f"update mysql fail-----Exception: {e}, sql: {sql}\n")
     finally:
         conn.close()
@@ -99,7 +99,7 @@ def create_table(table_name):
         conn.commit()
     except Exception as e:
         logger.remove()
-        logger.add('mysql_error_log.out', level='ERROR')
+        logger.add('mysql_error_out.log', level='ERROR')
         logger.error(f"create table fail-----{e}\n")
     finally:
         conn.close()

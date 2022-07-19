@@ -4,7 +4,9 @@ from loguru import logger
 import vthread
 from ocr.utils_mysql import select_db_recode, up_data_recode
 import redis
+
 r = redis.Redis(host="192.168.224.72", port=6379, db=15, password='123456', decode_responses=True)
+
 
 def rewrite_request(url):
     headers = {
@@ -56,8 +58,10 @@ def get_ip_addr(table_name):
     vthread.pool.waitall()
 
     logger.remove()
-    logger.add('ip_address_log.out')
+    logger.add('ip_address_out.log')
     logger.info(f'{table_name}---ip归属地已完成！')
+
+    r.set('ip_progress_n', 0)  # 最后将进度置为0
     return 'ip归属地已完成！'
 
 

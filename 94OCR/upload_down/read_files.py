@@ -124,7 +124,7 @@ def put_mysql(zip_file_name):
             table_name1 = prefix_name + "_" + file_name.replace("support-sys-", "").split("_")[0] + "_" + file_name.replace("support-sys-", "").split("_")[1]
             total_df1 = total_df1.append(table_recode)
             logger.remove()
-            logger.add('main_ocr_log.out')
+            logger.add('main_ocr_out.log')
             logger.info(f'入库文件：{file_name}')
 
     if table_name1:
@@ -132,7 +132,7 @@ def put_mysql(zip_file_name):
             total_df1.to_sql(table_name1, con=conn, if_exists='append', index=False)
         except Exception as e:
             logger.remove()
-            logger.add('mysql_error_log.out', level='ERROR')
+            logger.add('mysql_error_out.log', level='ERROR')
             logger.error(e)
             finish_handle(zip_file_name, conn)
             return {'num': 0, 'msg': e}
@@ -163,7 +163,7 @@ def put_mysql(zip_file_name):
         table_name2 = prefix_name + "_" + path_x
         total_df2 = total_df2.append(table_recode)
         logger.remove()
-        logger.add('main_ocr_log.out')
+        logger.add('main_ocr_out.log')
         logger.info(f'入库文件：{conversation}')
         print(f'入库文件：{conversation}')
 
@@ -188,7 +188,7 @@ def put_mysql(zip_file_name):
             r.sadd('mysql_table_name', table_name2)
         except Exception as e:
             logger.remove()
-            logger.add('mysql_error_log.out', level='ERROR')
+            logger.add('mysql_error_out.log', level='ERROR')
             logger.error(e)
             finish_handle(zip_file_name, conn)
             return {'num': 0, 'msg': e}

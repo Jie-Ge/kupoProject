@@ -13,7 +13,7 @@ sys.path.append(os.path.abspath('./ocr'))
 from utils_mysql import select_db_recode, up_data_recode
 
 cookie_list = "bank_cookies_list"
-r = redis.Redis(host="192.168.224.72", port=6379, db=3, password='123456')
+r = redis.Redis(host="192.168.224.72", port=6379, db=15, password='123456')
 card_list = []
 
 
@@ -68,13 +68,12 @@ def parse_card(table_name, date_time):
     while card_list:
         print('card_list:', len(card_list))
         card_id = card_list.pop()
-        if card_id and card_id.isdigit():
-            address, bank_name = card_address(card_id)
-            if bank_name == 0:
-                logger.remove()
-                logger.add('main_error_log.out')
-                logger.error(address)
-                return address
+        address, bank_name = card_address(card_id)
+        if bank_name == 0:
+            logger.remove()
+            logger.add('main_error_out.log')
+            logger.error(address)
+            return address
 
         sql = f"UPDATE `{table_name}` SET `银行卡号归属地`='{address}', `银行卡号开户行`='{bank_name}' " \
               f"where (银行卡号='{card_id}') and (入库时间='{date_time}');"
@@ -82,7 +81,7 @@ def parse_card(table_name, date_time):
 
         sql = f"select distinct `银行卡号` from `{table_name}` where (入库时间 = '{date_time}') and (银行卡号 != '') and (银行卡号归属地 is null);"
         result = select_db_recode(sql)
-        r.set('card_progress_n', len(result))
+        r.set('card_progress_n', r.get('card_progress_total') - len(result))
 
 
 def thread_get_card_address(table_name, date_time):
@@ -113,7 +112,7 @@ def get_card_address(table_name):
     date_time = get_new_date(table_name)
     if not date_time:
         logger.remove()
-        logger.add('mysql_error_log.out')
+        logger.add('mysql_error_out.log')
         logger.error('无法获取表中的 "入库时间" 字段')
         return '无法获取表中的 "入库时间" 字段'
 
@@ -122,13 +121,14 @@ def get_card_address(table_name):
     card_list = []
     for item in result:
         card_id = item[0]
-        card_list.append(card_id)
+        if card_id and card_id.isdigit():
+            card_list.append(card_id)
 
     card_list = list(set(card_list))
 
     r.set('card_progress_total', len(card_list))
     thread_get_card_address(table_name, date_time)
-
+    r.set('card_progress_n', 0)
     return '解析银行卡归属地已完成！'
 
 

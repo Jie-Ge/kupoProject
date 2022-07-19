@@ -104,7 +104,7 @@ def ocr(process_name, image_table_name):
                 receipt_account_addr, receipt_bank_name = card_address(payment_account)
                 if receipt_bank_name == 0:
                     logger.remove()
-                    logger.add('main_error_log.out')
+                    logger.add('main_error_out.log')
                     logger.error(receipt_account_addr)
                     error_msg = receipt_account_addr
                     error_code = 0
@@ -116,7 +116,7 @@ def ocr(process_name, image_table_name):
                 payer_account_addr, payer_bank_name = card_address(payer_account)
                 if payer_bank_name == 0:
                     logger.remove()
-                    logger.add('main_error_log.out')
+                    logger.add('main_error_out.log')
                     logger.error(payer_account_addr)
                     error_msg = payer_account_addr
                     error_code = 0
@@ -131,7 +131,7 @@ def ocr(process_name, image_table_name):
         except Exception as e:
             r.sadd('fail_image_url', url)
             logger.remove()
-            logger.add('main_error_log.out', level='ERROR')
+            logger.add('main_error_out.log', level='ERROR')
             logger.error(f"func ocr() error-------，Exception: {e}，url: {url}\n")
         else:
             sql = f"insert into `{image_table_name}` " \
@@ -169,7 +169,7 @@ def parse_image_info(table_name):
     url_set = r.smembers('image_url')
     if not url_set:
         logger.remove()
-        logger.add('main_ocr_log.out')
+        logger.add('main_ocr_out.log')
         logger.info(f'{table_name}---解析图片已全部完成')
         return {'num': 0, 'msg': '解析图片已全部完成！'}
 
@@ -193,6 +193,7 @@ def parse_image_info(table_name):
     if error_code == 0:
         return {'num': 0, 'msg': error_msg}
 
+    r.set('image_progress_n', 0)
     return {'num': 0, 'msg': '请再次点击解析图片按钮，检验是否已全部解析完成！'}
 
 

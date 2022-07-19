@@ -1,12 +1,10 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
-from datetime import date
 import pandas as pd
-from sqlalchemy import create_engine, types
+from sqlalchemy import create_engine
 import pymysql
 from loguru import logger
-from zipfile import ZipFile, ZIP_DEFLATED
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -17,7 +15,13 @@ conn = engine.connect()
 
 def get_image_info(table_name):
     '''获取图片识别出的信息'''
-    df = pd.read_sql_table(table_name+'_image', conn)
+    try:
+        sql = f"select * from `{table_name+'_image'}`"
+
+        df = pd.read_sql(sql, conn)
+    except ValueError as e:
+        df_empty = pd.DataFrame()
+        return df_empty, df_empty
 
     ## 平台（收款方）
     df['isdigit1'] = df['收款账号'].str.isdigit()
@@ -45,11 +49,6 @@ def get_image_info(table_name):
     # data2.rename(columns={'image_url': 'sdsd'}, inplace=True)
     df_duke.columns = ['消息内容', '姓名', '银行卡号', '银行卡号开户行', '银行卡号归属地']
     df_duke['钱包地址'] = ''
-    # data2 = data2.drop(index=data2[data2['姓名'] == ''].index.tolist())
-    # df_duke.dropna(subset=['姓名'],  # 指定列
-    #              axis=0,
-    #              how='all',  # how='all'表示若指定列的值都为空，就删掉该行
-    #              inplace=True)
     df_duke = df_duke[df_duke['姓名'] != '']
 
     df_duke.insert(1, '发送人IP', '')
@@ -88,7 +87,8 @@ def get_date_file(table_name):
 
         df_image_pt, df_image_duke = get_image_info(table_name)
 
-        pingtai_df = pingtai_df.append(df_image_pt)
+        if not df_image_pt.empty:
+            pingtai_df = pingtai_df.append(df_image_pt)
         save_file(pingtai_df, table_name, '平台')
 
 
@@ -105,13 +105,14 @@ def get_date_file(table_name):
 
         duke_df.insert(3, '姓名', '')
 
-        duke_df = duke_df.append(df_image_duke)
+        if not df_image_duke.empty:
+            duke_df = duke_df.append(df_image_duke)
         save_file(duke_df, table_name, '赌客')
 
         return {'msg': '生成数据文件成功！', 'file_name': table_name}
     except Exception as e:
         logger.remove()
-        logger.add('main_error_log.out')
+        logger.add('main_error_out.log')
         logger.error(e)
         print(e)
         return {'msg': e, 'file_name': table_name}

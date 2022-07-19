@@ -25,3 +25,4 @@
 
 ### 94OCR
 - 图像文字识别、接口API、遍历文件夹中文件、pandas合并文件、pandas保存数据到数据库、ip归属地、vthread多线程
+- flask、日志
